@@ -59,7 +59,7 @@ function gotKeystroke(keyCode) {
                 // show the user how many guesses remain
                 document.getElementById("guessCount").innerHTML = guessTries - guesses;
                 if (guesses == guessTries) {
-                    message = "Too bad! You\'ve LOST!  The Answer was " + music[item][0] + ". Try again.";
+                    message = "Too bad! You\'ve LOST!  The Correct Answer was " + music[item][0] + ". Try again.";
                     result = message.bold();
                     document.getElementById("winLose").innerHTML = result;
                     // Too many guesses! You lose!!  reinit the game
@@ -90,7 +90,7 @@ function initGame() {
     document.getElementById("guessCount").innerHTML = guessTries;
     // Clear it out from the last game if necessary
     document.getElementById("wordGuess").innerHTML = "";
-    
+
     // This will generate a randomly selected member of the music array.
     // The while loop prevents the re-use of the same 
     // band over and over by random chance.
@@ -108,11 +108,10 @@ function initGame() {
         }
 
     }
-
     bandUsed = bandUsed + item;
 
-    console.log("bandUsed = " + bandUsed);
-    console.log("Band name = " + music[item][0]);
+    // console.log("bandUsed = " + bandUsed);
+    // console.log("Band name = " + music[item][0]);
     // set how many keys the user gets to hit
     guessTries = 12;
 
@@ -132,7 +131,5 @@ function initGame() {
     //console.log("Doc wordGuess =" + document.getElementById("wordGuess").innerHTML);
 
     // play the song of the band to provide player with a hint
-    //play music[item][1];
     document.getElementById("currentSong").src = "assets/media/" + music[item][1] + ".mp3";
-
 }
