@@ -21,10 +21,41 @@
 </head>
 
 <body>
+    <!-- Starting Navbar -->
+    <!-- Starting Navbar -->
+    <!-- Starting Navbar -->
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="../" class="navbar-brand">Matt Ames</a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <button type="button" class="btn btn-default" onclick="location.reload(true)">Restart</button>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <audio id="currentSong" controls autoplay>
+                            <source src="" type="audio/mp3"> Your browser does not support the audio tag.
+                        </audio>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Starting main content -->
+    <!-- Starting main content -->
+    <!-- Starting main content -->
     <div class="container">
+        <div class="page-header" id="banner">
+            <div class="row">
+                <h1>Let's Play Hangman!</h1>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-5 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
-                <h1>Let's Play Hangman!</h1>
                 <img class="pic" src="assets/images/vincentHangman.jpg">
             </div>
             <div class="col-lg-5 col-md-5 col-sm-5 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
@@ -68,10 +99,6 @@
                 <h3 id="winLose"></h3>
             </div>
         </div>
-        <audio id="currentSong"  controls autoplay>
-            <source src="" type="audio/mp3"> 
-            Your browser does not support the audio tag.
-        </audio>
     </div>
 </body>
 <script type="text/javascript">
