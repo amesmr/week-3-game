@@ -27,17 +27,23 @@
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a href="../" class="navbar-brand">Matt Ames</a>
+                <a href="../" class="navbar-brand">Welcome to Matt Ames' Hangman Game</a>
             </div>
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
                     <li>
-                        <button type="button" class="btn btn-default" onclick="location.reload(true)">Restart</button>
+                        <form class="navbar-form navbar-left">
+                            <button type="button" class="btn btn-default" onclick="location.reload(true)">Restart
+                            </button>
+                        </form>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <audio id="currentSong" controls autoplay>
+                        <a href="">(This is your hint)</a>
+                    </li>
+                    <li>
+                        <audio id="currentSong" controls autoplay loop>
                             <source src="" type="audio/mp3"> Your browser does not support the audio tag.
                         </audio>
                     </li>
@@ -59,8 +65,8 @@
                 <img class="pic" src="assets/images/vincentHangman.jpg">
             </div>
             <div class="col-lg-5 col-md-5 col-sm-5 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
-                <div>
-                    <h3>Press any key to start!</h3>
+                <div class="row">
+                    <h4>Use the Letter Keys on your Keyboard to Guess Who's Playing.</h4>
                 </div>
                 <div class="row">
                     <h4>Wins</h4>

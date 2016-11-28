@@ -5,9 +5,12 @@ var music = [
     ["JOHNNY CASH", "HURT"],
     ["ETTA JAMES", "AT LAST"],
     ["QUEEN", "BOHEMIAN RHAPSODY"],
-    ["INGRID MICHAELSON", "THE WAY I AM"],
+    ["INGRID MICHAELSON", "THE WAY I AM (LIVE ON WERS)"],
     ["GORILLAZ", "NOVEMBER HAS COME"],
-    ["FUGEES", "KILLING ME SOFTLY WITH HIS SONG"]
+    ["FUGEES", "KILLING ME SOFTLY WITH HIS SONG"],
+    ["ISRAEL KAMAKAWIWO OLE", "SOMEWHERE OVER THE RAINBOW _ WHAT"],
+    ["JACKSON BROWNE", "DOCTOR MY EYES"],
+    ["GANGSTAGRASS", "LONG HARD TIMES TO COME (FROM _JU"]
 ];
 
 var guesses = 0;
@@ -29,7 +32,8 @@ function gotKeystroke(keyCode) {
         }
         var charFound = false;
         var arrWordGuess = document.getElementById("wordGuess").innerHTML.split("");
-        if (document.getElementById("guessedLetters").innerHTML.indexOf(x) >= 0) {
+        if ((document.getElementById("guessedLetters").innerHTML.indexOf(x) >= 0) ||
+            (document.getElementById("wordGuess").innerHTML.indexOf(x) >= 0)) {
             // user has aleady guessed this letter, do nothing with counts and exit
         } else {
             document.getElementById("charGuess").innerHTML = x;
@@ -55,7 +59,7 @@ function gotKeystroke(keyCode) {
                 // show the user how many guesses remain
                 document.getElementById("guessCount").innerHTML = guessTries - guesses;
                 if (guesses == guessTries) {
-                    message = "Too bad! You\'ve LOST! Try again.";
+                    message = "Too bad! You\'ve LOST!  The Answer was " + music[item][0] + ". Try again.";
                     result = message.bold();
                     document.getElementById("winLose").innerHTML = result;
                     // Too many guesses! You lose!!  reinit the game
@@ -67,7 +71,7 @@ function gotKeystroke(keyCode) {
             if (document.getElementById("wordGuess").innerHTML.indexOf("-") < 0) {
                 // they won!!
                 document.getElementById("winCount").innerHTML++;
-                message = "Congratulations!! You\'ve WON! Try Again.";
+                message = "Congratulations!! You\'ve WON! The Answer was " + music[item][0] + ". Try Again.";
                 result = message.italics();
                 document.getElementById("winLose").innerHTML = result;
                 initGame();
@@ -87,12 +91,10 @@ function initGame() {
     // Clear it out from the last game if necessary
     document.getElementById("wordGuess").innerHTML = "";
 
-    item = Math.floor(Math.random() * music.length);
-
+    // This will generate a randomly selected member of the music array.
+    // The while loop prevents the re-use of the same 
+    // band over and over by random chance.
     while (bandUsed.indexOf(item) >= 0) {
-        // This will generate a randomly selected member of the music array.
-        // The while loop prevents the re-use of the same 
-        // band over and over by random chance.
         item = Math.floor(Math.random() * music.length);
 
         // Player has won more times than there are bands in the array.  Let them start over.
