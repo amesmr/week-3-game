@@ -91,9 +91,10 @@ function initGame() {
 
     while (bandUsed.indexOf(item) >= 0) {
         // This will generate a randomly selected member of the music array.
-        // The while loop will (hopefully) prevent the re-use of the same 
+        // The while loop prevents the re-use of the same 
         // band over and over by random chance.
         item = Math.floor(Math.random() * music.length);
+
         // Player has won more times than there are bands in the array.  Let them start over.
         if (bandUsed.length == music.length) {
             item = Math.floor(Math.random() * music.length);
@@ -127,5 +128,6 @@ function initGame() {
 
     // play the song of the band to provide player with a hint
     //play music[item][1];
+    document.getElementById("currentSong").src = "assets/media/" + music[item][1] + ".mp3";
 
 }
