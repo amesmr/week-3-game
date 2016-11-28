@@ -90,10 +90,13 @@ function initGame() {
     document.getElementById("guessCount").innerHTML = guessTries;
     // Clear it out from the last game if necessary
     document.getElementById("wordGuess").innerHTML = "";
-
+    
     // This will generate a randomly selected member of the music array.
     // The while loop prevents the re-use of the same 
     // band over and over by random chance.
+    if (bandUsed == ""){
+        item = Math.floor(Math.random() * music.length);        
+    }
     while (bandUsed.indexOf(item) >= 0) {
         item = Math.floor(Math.random() * music.length);
 
