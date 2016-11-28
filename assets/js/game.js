@@ -20,49 +20,53 @@ function gotKeystroke(keyCode) {
     var x = String.fromCharCode(keyCode);
     var charFound = false;
     var arrWordGuess = document.getElementById("wordGuess").innerHTML.split("");
-    if (guesses < guessTries) {
-        if (document.getElementById("guessedLetters").innerHTML.indexOf(x) >= 0) {
-            // user has aleady guessed this letter, do nothing with counts and exit
+    if (document.getElementById("guessedLetters").innerHTML.indexOf(x) >= 0) {
+        // user has aleady guessed this letter, do nothing with counts and exit
+    } else {
+        document.getElementById("charGuess").innerHTML = x;
+        if (guesses == 0) {
+            document.getElementById("guessedLetters").innerHTML = x;
         } else {
-            if (guesses == 0) {
-                document.getElementById("guessedLetters").innerHTML = x;
-            } else {
-                document.getElementById("guessedLetters").innerHTML =
-                    document.getElementById("guessedLetters").innerHTML + ", " + x;
-            }
-            for (i = 0; i < music[item][0].length; i++) {
-                if (music[item][0].charAt(i) == " ") {
-                    // do nothing for spaces.  Give them a mulligan and go to the next character
-                } else if (music[item][0].charAt(i) == x) {
-                    arrWordGuess[i] = x;
-                    charFound = true;
-                }
-            }
-            if (charFound == false) {
-                // if they guessed a letter correct, it doesn't count as a missed guess
-                guesses++;
-                // show the user how many guesses remain
-                document.getElementById("guessCount").innerHTML = guessTries - guesses;
-            } else {
-                document.getElementById("wordGuess").innerHTML = arrWordGuess.join("");
-            }
-            if (document.getElementById("wordGuess").innerHTML.indexOf("*") < 0) {
-                // they won!!
-                document.getElementById("winCount").innerHTML++;
+            document.getElementById("guessedLetters").innerHTML =
+                document.getElementById("guessedLetters").innerHTML + ", " + x;
+        }
+        for (i = 0; i < music[item][0].length; i++) {
+            if (music[item][0].charAt(i) == " ") {
+                // do nothing for spaces.  Give them a mulligan and go to the next character
+            } else if (music[item][0].charAt(i) == x) {
+                arrWordGuess[i] = x;
+                charFound = true;
             }
         }
-        document.getElementById("charGuess").value = "";
-    } else {
-        // Too many guesses! You lose!!  reinit the game
-        initGame();
+        if (charFound == false) {
+            // if they guessed a letter correct, it doesn't count as a missed guess
+            guesses++;
+            // show the user how many guesses remain
+            document.getElementById("guessCount").innerHTML = guessTries - guesses;
+            if (guesses == guessTries) {
+
+                document.getElementById("winLose").innerHTML = "Too bad! You\'ve lost! Try again.";
+                // Too many guesses! You lose!!  reinit the game
+                initGame();
+            }
+        } else {
+            document.getElementById("wordGuess").innerHTML = arrWordGuess.join("");
+        }
+        if (document.getElementById("wordGuess").innerHTML.indexOf("*") < 0) {
+            // they won!!
+            document.getElementById("winCount").innerHTML++;
+            document.getElementById("winLose").innerHTML = "Congratulations!! You\'ve won!";
+            initGame();
+        }
     }
 }
 
 function initGame() {
-    document.getElementById("winCount").innerHTML = "0";
     document.getElementById("charGuess").innerHTML = "";
     document.getElementById("guessedLetters").innerHTML = "";
     document.getElementById("guessCount").innerHTML = guessTries;
+    // Clear it out from the last game if necessary
+    document.getElementById("wordGuess").innerHTML = "";
 
     // this will generate a randomly selected member of the bands array
     item = Math.floor(Math.random() * music.length);
@@ -87,9 +91,5 @@ function initGame() {
 
     // play the song of the band to provide player with a hint
     //play music[item][1];
-
-}
-
-function guessEntered() {
 
 }

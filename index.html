@@ -12,6 +12,9 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Local stylesheet, JS, etc. -->
+    <link rel="stylesheet" type="text/plain" href="assets/css/bootswatch.less">
+    <link rel="stylesheet" type="text/plain" href="assets/css/variables.less">
+    <link rel="stylesheet" type="text/css" href="assets/css/slate.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script type="text/javascript" src="assets/js/game.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,65 +22,66 @@
 
 <body>
     <div class="container">
-        <h1>Let's Play Hangman!</h1>
+        <div class="jumbotron">
+            <h1>Let's Play Hangman!</h1>
+                <img class="pic" src="assets/images/vincentHangman.jpg">
+        </div>
         <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-5 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
-                <img class="pic" src="assets/images/vincentHangman.jpg">
+                <h2>Press any key to start!</h2>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
+                <h2 id="winLose"></h2>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
-                Press any key to start!
+                <h3>Wins</h3>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
-                Wins
+                <h3 id="winCount">0</h3>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
-                <p id="winCount">0</p>
+                <h3>Current Word</h3>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
-                Current Word
+                <h3 id="wordGuess"></h3>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
-                <p id="wordGuess"></p>
+                <h3>Enter a Letter</h3>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
-                Enter a Letter
+                <h3 id="charGuess"></h3>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
-                <p id="charGuess"></p>
+                <h3>Letters Guessed</h3>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
-                Letters Guessed
+                <h3 id="guessedLetters"></h3>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
-                <p id="guessedLetters"></p>
+                <h3>Guesses Remaining</h3>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
-                Guesses Remaining
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
-                <p id="guessCount">8</p>
+                <h3 id="guessCount">8</h3>
             </div>
         </div>
     </div>
