@@ -186,12 +186,17 @@ function doRedoAnimate(i) {
             color: "red"
         }, 2000);
     }
-    $("#winLose").focus();
+    $('#winLose').goTo();
     // will this set it back to its defaults?
     restore();
 }
 
 
+    $.fn.goTo = function() {
+        $('html, body').animate({
+            scrollTop: $(this).offset().top + 'px'
+        }, 'fast');
+    }
 // put the h3 tag back to its defaults
 function restore() {
     $("#winLose").each(function() {
