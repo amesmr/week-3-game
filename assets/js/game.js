@@ -20,82 +20,31 @@ var item = 0;
 var isLetter = true;
 var bandUsed = "";
 
-function gotKeystroke(keyCode) {
-    var x = String.fromCharCode(keyCode);
-    var result = "";
-    var message = "";
-    if (upperLetters.includes(x)) {
-        if (isLetter == false) {
-            //clear out the error message
-            document.getElementById("winLose").innerHTML = "";
-            isLetter = true;
-        }
-        var charFound = false;
-        var arrWordGuess = document.getElementById("wordGuess").innerHTML.split("");
-        if ((document.getElementById("guessedLetters").innerHTML.indexOf(x) >= 0) ||
-            (document.getElementById("wordGuess").innerHTML.indexOf(x) >= 0)) {
-            // user has aleady guessed this letter, do nothing with counts and exit
-        } else {
-            document.getElementById("charGuess").innerHTML = x;
-            if (guesses == 0) {
-                document.getElementById("guessedLetters").innerHTML = x;
-                // Clear out the messages upon start of new game
-                document.getElementById("winLose").innerHTML = "";
-            } else {
-                document.getElementById("guessedLetters").innerHTML =
-                    document.getElementById("guessedLetters").innerHTML + ", " + x;
-            }
-            for (i = 0; i < music[item][0].length; i++) {
-                if (music[item][0].charAt(i) == " ") {
-                    // do nothing for spaces.  Give them a mulligan and go to the next character
-                } else if (music[item][0].charAt(i) == x) {
-                    arrWordGuess[i] = x;
-                    charFound = true;
-                }
-            }
-            if (charFound == false) {
-                // if they guessed a letter correct, it doesn't count as a missed guess
-                guesses++;
-                // show the user how many guesses remain
-                document.getElementById("guessCount").innerHTML = guessTries - guesses;
-                if (guesses == guessTries) {
-                    message = "Too bad! You\'ve LOST!  The Correct Answer was " + music[item][0] + ". Try again.";
-                    result = message.bold();
-                    document.getElementById("winLose").innerHTML = result;
-                    // Too many guesses! You lose!!  reinit the game
-                    initGame();
-                }
-            } else {
-                document.getElementById("wordGuess").innerHTML = arrWordGuess.join("");
-            }
-            if (document.getElementById("wordGuess").innerHTML.indexOf("-") < 0) {
-                // they won!!
-                document.getElementById("winCount").innerHTML++;
-                message = "Congratulations!! You\'ve WON! The Answer was " + music[item][0] + ". Try Again.";
-                result = message.italics();
-                document.getElementById("winLose").innerHTML = result;
-                initGame();
-            }
-        }
-    } else {
-        // The player entered a non letter character.  Inform them and let them try again.
-        document.getElementById("winLose").innerHTML = "You must enter letters only. Try Again.";
-        isLetter = false;
-    }
-}
-
 function initGame() {
-    document.getElementById("charGuess").innerHTML = "";
-    document.getElementById("guessedLetters").innerHTML = "";
-    document.getElementById("guessCount").innerHTML = guessTries;
-    // Clear it out from the last game if necessary
-    document.getElementById("wordGuess").innerHTML = "";
+
+    // only reach for the objects the one time
+
+    // var objWordguess = document.getElementById("wordGuess");
+    // var objGuessedLetters = document.getElementById("guessedLetters");
+    // var objCharGuess = document.getElementById("charGuess");
+    // var objGuessCount = document.getElementById("guessCount");
+    var objWordguess = $("#wordGuess");
+    var objGuessedLetters = $("#guessedLetters");
+    var objCharGuess = $("#charGuess");
+    var objGuessCount = $("#guessCount");
+
+
+    objCharGuess.html("");
+    objGuessedLetters.html("");
+    objGuessCount.html(guessTries);
+    // Clear it out from the last game
+    objWordguess.html("");
 
     // This will generate a randomly selected member of the music array.
     // The while loop prevents the re-use of the same 
     // band over and over by random chance.
-    if (bandUsed == ""){
-        item = Math.floor(Math.random() * music.length);        
+    if (bandUsed == "") {
+        item = Math.floor(Math.random() * music.length);
     }
     while (bandUsed.indexOf(item) >= 0) {
         item = Math.floor(Math.random() * music.length);
@@ -122,9 +71,9 @@ function initGame() {
     for (i = 0; i < music[item][0].length; i++) {
 
         if (music[item][0].charAt(i) == " ") {
-            document.getElementById("wordGuess").innerHTML = document.getElementById("wordGuess").innerHTML + " ";
+            objWordguess.html(objWordguess.html() + " ");
         } else {
-            document.getElementById("wordGuess").innerHTML = document.getElementById("wordGuess").innerHTML + "-";
+            objWordguess.html(objWordguess.html() + "-");
         }
 
     }
@@ -132,4 +81,129 @@ function initGame() {
 
     // play the song of the band to provide player with a hint
     document.getElementById("currentSong").src = "assets/media/" + music[item][1] + ".mp3";
+
 }
+
+function gotKeystroke(keyCode) {
+    var x = String.fromCharCode(keyCode);
+    var result = "";
+    var message = "";
+
+    // only reach for the objects the one time
+    // var objWordguess = document.getElementById("wordGuess");
+    // var objGuessedLetters = document.getElementById("guessedLetters");
+    // var objWinLose = document.getElementById("winLose");
+    // var objWinCount = document.getElementById("winCount");
+    // var objCharGuess = document.getElementById("charGuess");
+    // var objGuessCount = document.getElementById("guessCount");
+    var objWordguess = $("#wordGuess");
+    var objGuessedLetters = $("#guessedLetters");
+    var objWinLose = $("#winLose");
+    var objWinCount = $("#winCount");
+    var objCharGuess = $("#charGuess");
+    var objGuessCount = $("#guessCount");
+
+    if (upperLetters.includes(x)) {
+        if (isLetter == false) {
+            //clear out the error message
+            objWinLose.html("");
+            objWinLose.css({ display: "none" });
+            isLetter = true;
+        }
+        var charFound = false;
+        var arrWordGuess = objWordguess.html().split("");
+        if ((objGuessedLetters.html().indexOf(x) >= 0) ||
+            (objWordguess.html().indexOf(x) >= 0)) {
+            // user has aleady guessed this letter, do nothing with counts and exit
+        } else {
+            objCharGuess.html(x);
+            if (guesses == 0) {
+                objGuessedLetters.html(x);
+                // Clear out the messages upon start of new game
+                objWinLose.html("");
+                objWinLose.css({ display: "none" });
+            } else {
+                objGuessedLetters.html(objGuessedLetters.html() + ", " + x);
+            }
+            for (i = 0; i < music[item][0].length; i++) {
+                if (music[item][0].charAt(i) == " ") {
+                    // do nothing for spaces.  Give them a mulligan and go to the next character
+                } else if (music[item][0].charAt(i) == x) {
+                    arrWordGuess[i] = x;
+                    charFound = true;
+                }
+            }
+            if (charFound == false) {
+                // if they guessed a letter correct, it doesn't count as a missed guess
+                guesses++;
+                // show the user how many guesses remain
+                objGuessCount.html(guessTries - guesses);
+                if (guesses == guessTries) {
+                    message = "Too bad! You\'ve LOST!  The Correct Answer was " + music[item][0] + ". Try again.";
+                    result = message.bold();
+                    objWinLose.html(result);
+                    // Too many guesses! You lose!!  reinit the game
+                    initGame();
+                }
+            } else {
+                objWordguess.html(arrWordGuess.join(""));
+            }
+            if (objWordguess.html().indexOf("-") < 0) {
+                // they won!!
+                var numCount = Number(objWinCount.html());
+                objWinCount.html(++numCount);
+                message = "Congratulations!! You\'ve WON! The Answer was " + music[item][0] + ". Try Again.";
+                result = message.italics();
+                objWinLose.html(result);
+                doRedoAnimate(true);
+                initGame();
+            }
+        }
+    } else {
+        // The player entered a non letter character.  Inform them and let them try again.
+        objWinLose.html("You must enter letters only. Try Again.");
+        isLetter = false;
+    }
+    objCharGuess.val("");
+}
+
+// If the player wins or loses, let's animate that text
+function doRedoAnimate(i) {
+    // player has won
+    if (i) {
+        $("#winLose").css("display", "block");
+        $("#winLose").animate({
+            fontSize: "+=20px",
+            color: "green"
+        }, 2000);
+        // will this set it back to its defaults?
+        restore();
+    } else {
+        // looser!
+    }
+}
+
+
+// put the h3 tag back to its defaults
+function restore() {
+    $("#winLose").each(function() {
+        var orig = $.data(this, 'css');
+        $(this).animate({
+            fontSize: orig.fontSize,
+            color: orig.color
+        }, 2000);
+    });
+}
+
+// do this once on page load
+$(document).ready(function() {
+    $("#winLose").each(function() {
+        var $this = $(this);
+        $.data(this, 'css', {
+            fontSize: $this.css('fontSize'),
+            color: $this.css('color')
+        });
+        $this.css("display", "none");
+    });
+});
+7
