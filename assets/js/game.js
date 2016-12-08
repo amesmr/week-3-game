@@ -178,9 +178,6 @@ function doRedoAnimate(i) {
             fontSize: "+=20px",
             color: "green"
         }, 2000);
-        $("#winLose").focus();
-        // will this set it back to its defaults?
-        restore();
     } else {
         // looser!
         $("#winLose").css("display", "block");
@@ -188,10 +185,10 @@ function doRedoAnimate(i) {
             fontSize: "+=20px",
             color: "red"
         }, 2000);
-        $("#winLose").focus();
-        // will this set it back to its defaults?
-        restore();
     }
+    $("#winLose").focus();
+    // will this set it back to its defaults?
+    restore();
 }
 
 
