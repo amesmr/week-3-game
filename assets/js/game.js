@@ -118,12 +118,12 @@ function gotKeystroke(keyCode) {
         } else {
             objCharGuess.html(x);
             if (guesses == 0) {
-                objGuessedLetters.html(x);
+                objGuessedLetters.append(x);
                 // Clear out the messages upon start of new game
                 objWinLose.html("");
                 objWinLose.css({ display: "none" });
             } else {
-                objGuessedLetters.html(objGuessedLetters.html() + ", " + x);
+                objGuessedLetters.append(", " + x);
             }
             for (i = 0; i < music[item][0].length; i++) {
                 if (music[item][0].charAt(i) == " ") {
@@ -142,6 +142,8 @@ function gotKeystroke(keyCode) {
                     message = "Too bad! You\'ve LOST!  The Correct Answer was " + music[item][0] + ". Try again.";
                     result = message.bold();
                     objWinLose.html(result);
+                    objWinLose.focus();
+                    doRedoAnimate(false);
                     // Too many guesses! You lose!!  reinit the game
                     initGame();
                 }
@@ -176,10 +178,19 @@ function doRedoAnimate(i) {
             fontSize: "+=20px",
             color: "green"
         }, 2000);
+        $("#winLose").focus();
         // will this set it back to its defaults?
         restore();
     } else {
         // looser!
+        $("#winLose").css("display", "block");
+        $("#winLose").animate({
+            fontSize: "+=20px",
+            color: "red"
+        }, 2000);
+        $("#winLose").focus();
+        // will this set it back to its defaults?
+        restore();
     }
 }
 
@@ -205,5 +216,37 @@ $(document).ready(function() {
         });
         $this.css("display", "none");
     });
+
+    $(window).resize(function() {
+        ReSize();
+    });
+
+    function ReSize() {
+        if ($(this).width() <= '480') {
+            $(".resized-left").attr("class", "resized-left col-sm-10 col-offset-sm-2");
+            $(".resized-right").attr("class", "resized-right col-sm-10 col-offset-sm-2");
+            $(".pic").css({
+                "width": "50%",
+                "height": "auto",
+                "verticalAlign": "textBottom"
+            });
+        } else if ($(this).width() <= '768') {
+            $(".resized-left").attr("class", "resized-left col-md-5 col-offset-md-1");
+            $(".resized-right").attr("class", "resized-right col-md-5 col-offset-md-1");
+            $(".pic").css({
+                "width": "80%",
+                "height": "auto",
+                "verticalAlign": "textBottom"
+            });
+        } else if ($(this).width() <= '980') {
+            $(".resized-left").attr("class", "resized-left col-lg-5 col-offset-lg-1");
+            $(".resized-right").attr("class", "resized-right col-lg-5 col-offset-lg-1");
+            $(".pic").css({
+                "width": "100%",
+                "height": "auto",
+                "verticalAlign": "textBottom"
+            });
+        }
+    }
+    ReSize();
 });
-7

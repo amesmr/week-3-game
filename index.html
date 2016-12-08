@@ -24,32 +24,43 @@
     <!-- Starting Navbar -->
     <!-- Starting Navbar -->
     <!-- Starting Navbar -->
-        <div class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <a href="#" class="navbar-brand">Matthew Ames</a>
+                <p class="navbar-brand">Matthew Ames</p>
                 <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            <div class="navbar-collapse collapse" id="navbar-main">
+            <div class="navbar-collapse collapse navbar-left" id="navbar-main">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="download" aria-expanded="false">Resources <span class="caret"></span></a>
                         <ul class="dropdown-menu" aria-labelledby="download">
-                    <li>
-                        <a href="">(Press play for a hint)</a>
-                    </li>
-                    <li>
-                        <audio id="currentSong" controls loop>
-                            <source src="" type="audio/mp3"> Your browser does not support the audio tag.
-                        </audio>
-                    </li>
+                            <li>
+                                <p>(Press play for a hint)</p>
+                            </li>
+                            <li>
+                                <audio id="currentSong" controls loop>
+                                    <source src="" type="audio/mp3"> Your browser does not support the audio tag.
+                                </audio>
+                            </li>
+                            <li>
+                                <form class="navbar-form">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-default" onclick="location.reload(true)">Restart
+                                        </button>
+                                    </div>
+                                </form>
+                            </li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
+    </div>
     <!-- Starting main content -->
     <!-- Starting main content -->
     <!-- Starting main content -->
@@ -60,12 +71,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-5 col-md-5 col-sm-5 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
+            <div class="resized-left">
                 <img class="pic" src="assets/images/vincentHangman.jpg" alt="Hangman">
                 <div id="winLose" class="alert alert-dismissible alert-warning" style="position: relative;">
                 </div>
             </div>
-            <div class="col-lg-5 col-md-5 col-sm-5 col-lg-offset-1 col-md-offset-1 col-offset-sm-1">
+            <div class="resized-right">
                 <div class="row">
                     <h4>Use the Letter Keys on your Keyboard to Guess Who's Playing.</h4>
                 </div>
